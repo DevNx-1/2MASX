@@ -2354,12 +2354,12 @@ var
   qryTela: TFDQuery;
 begin
   try
-    qryTela := TFDQuery.Create(self);
+    qryTela            := TFDQuery.Create(self);
     qryTela.Connection := Conexao;
 
     qryTela.Close;
     qryTela.sql.Clear;
-    qryTela.sql.Text := 'update telas set grupo=:grupo where tela=:tela';
+    qryTela.sql.Text        := 'update telas set grupo=:grupo where tela=:tela';
     qryTela.Params[0].Value := aform;
     qryTela.Params[1].Value := Dados.aMenu;
     qryTela.execsql;
@@ -2373,7 +2373,7 @@ function TDados.BuscaPlanoConta(codigo: Integer): boolean;
 begin
   Result := true;
   Dados.qryConsulta.Close;
-  Dados.qryConsulta.sql.Text := 'SELECT CODIGO FROM PLANO WHERE CODIGO=:CODIGO';
+  Dados.qryConsulta.sql.Text        := 'SELECT CODIGO FROM PLANO WHERE CODIGO=:CODIGO';
   Dados.qryConsulta.Params[0].Value := codigo;
   Dados.qryConsulta.Open;
   if Dados.qryConsulta.IsEmpty then
@@ -2382,9 +2382,9 @@ end;
 
 function TDados.BuscarCFOP(CFOP: string): string;
 begin
-    Result := 'NAO';
+   Result := 'NAO';
    Dados.qryCFOP.Close;
-   Dados.qryCFOP.SQL.Text := 'SELECT * FROM CFOP WHERE CODIGO=:pCodigo';
+   Dados.qryCFOP.SQL.Text        := 'SELECT * FROM CFOP WHERE CODIGO=:pCodigo';
    Dados.qryCFOP.Params[0].Value :=  strToint(CFOP);
    Dados.qryCFOP.Open;
    if not Dados.qryCFOP.IsEmpty then
@@ -2394,7 +2394,7 @@ end;
 procedure TDados.LimpaCaixa(codigo: Integer);
 begin
   Dados.qryExecute.Close;
-  Dados.qryExecute.sql.Text := 'DELETE FROM CAIXA WHERE FKRECEBER=:CODIGO';
+  Dados.qryExecute.sql.Text        := 'DELETE FROM CAIXA WHERE FKRECEBER=:CODIGO';
   Dados.qryExecute.Params[0].Value := codigo;
   Dados.qryExecute.execsql;
   Dados.Conexao.CommitRetaining;
@@ -2643,8 +2643,7 @@ end;
 function TDados.AlteraDataPreco(codigo: Integer): TDate;
 begin
   Dados.qryExecute.Close;
-  Dados.qryExecute.sql.Text :=
-    'update produto set data_preco=current_date where codigo=:codigo';
+  Dados.qryExecute.sql.Text        := 'update produto set data_preco=current_date where codigo=:codigo';
   Dados.qryExecute.Params[0].Value := codigo;
   Dados.qryExecute.execsql;
   Dados.Conexao.CommitRetaining;
@@ -2758,10 +2757,10 @@ var
 const
   Buff_Size = MAX_COMPUTERNAME_LENGTH + 1;
 begin
-  nSize := Buff_Size;
+  nSize    := Buff_Size;
   lpBuffer := StrAlloc(Buff_Size);
   GetComputerName(lpBuffer, nSize);
-  Result := String(lpBuffer);
+  Result   := String(lpBuffer);
   StrDispose(lpBuffer);
 end;
 
